@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Good Home | Arquitectos de Experiencia con IA</title>
+    <!-- Font Awesome 6 (iconos profesionales) -->
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: #ffffff;
+            color: #1e2a2e;
+            scroll-behavior: smooth;
+        }
+
+        /* Importar fuente Poppins */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* Header corporativo */
+        header {
+            background: #0a2e2b;
+            backdrop-filter: blur(0px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            text-align: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            margin-bottom: 8px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: white;
+            margin-top: 4px;
+        }
+
+        .logo p {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: #c7e9e2;
+            margin-top: 4px;
+        }
+
+        .nav a {
+            color: #e2e8e6;
+            text-decoration: none;
+            margin-left: 32px;
+            font-weight: 500;
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav a:hover {
+            color: #d9a13b;
+        }
+
+        /* Botones */
+        .btn-primary {
+            display: inline-block;
+            background: #d9a13b;
+            color: #0a2e2b;
+            padding: 14px 34px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 12px rgba(217,161,59,0.3);
+        }
+
+        .btn-primary:hover {
+            background: #bf832c;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(217,161,59,0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #d9a13b;
+            color: #d9a13b;
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: #d9a13b;
+            color: #0a2e2b;
+            transform: translateY(-3px);
+        }
+
+        /* Hero con imagen de fondo */
+        .hero {
+            background: linear-gradient(135deg, #0a2e2b 0%, #1a4a44 100%);
+            margin-top: 85px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1558002038-1055907df827?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-badge {
+            background: rgba(217,161,59,0.2);
+            backdrop-filter: blur(8px);
+            display: inline-block;
+            padding: 8px 24px;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            border: 1px solid rgba(217,161,59,0.5);
+        }
+
+        .hero h2 {
+            font-size: 3.2rem;
+            max-width: 850px;
+            margin: 0 auto 20px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero-tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 36px;
+        }
+
+        /* Secciones */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-dark {
+            background-color: #f8faf7;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0a2e2b;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #5a6e6a;
+            max-width: 700px;
+            margin: 0 auto 56px;
+            font-size: 1.1rem;
+        }
+
+        /* Grids y cards */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #ecf0ee;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 28px;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: #0a2e2b;
+        }
+
+        /* Tarjeta de valores */
+        .valor-card {
+            text-align: center;
+            background: white;
+            padding: 32px 20px;
+            border-radius: 28px;
+            transition: 0.2s;
+            border: 1px solid #e9efec;
+        }
+
+        .valor-icon {
+            font-size: 2.8rem;
+            color: #d9a13b;
+            margin-bottom: 20px;
+        }
+
+        /* Comparativa sí/no */
+        .comp-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .si-box {
+            background: #e5f2ef;
+            border-radius: 32px;
+            padding: 36px;
+        }
+
+        .no-box {
+            background: #fef0ed;
+            border-radius: 32px;
+            padding: 36px;
+        }
+
+        .si-box h3, .no-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+        }
+
+        .lista-check {
+            list-style: none;
+        }
+        .lista-check li {
+            margin: 16px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .lista-check i.fa-check-circle {
+            color: #2a7f6e;
+            font-size: 1.2rem;
+        }
+        .lista-check i.fa-times-circle {
+            color: #c25b4a;
+        }
+
+        /* Proceso */
+        .proceso-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+        .proceso-paso {
+            background: white;
+            padding: 24px 16px;
+            text-align: center;
+            border-radius: 24px;
+            border: 1px solid #e0e8e4;
+        }
+        .paso-num {
+            background: #0a2e2b;
+            color: white;
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 60px;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+
+        /* Antes/Después */
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+        .ba-card {
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+        }
+        .ba-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+        .ba-content {
+            padding: 28px;
+            background: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a2e2b;
+            color: #cddad6;
+            padding: 56px 0 32px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 48px;
+        }
+
+        .footer-logo h3 {
+            color: white;
+            font-size: 1.6rem;
+        }
+
+        .footer-links a {
+            display: block;
+            color: #cddad6;
+            text-decoration: none;
+            margin: 12px 0;
+            transition: 0.2s;
+        }
+        .footer-links a:hover { color: #d9a13b; }
+
+        .copyright {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid #2c544f;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 900px) {
+            .grid-2, .grid-3, .comp-wrapper, .proceso-grid, .before-after, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .proceso-grid { gap: 16px; }
+            .hero h2 { font-size: 2rem; }
+            .container { padding: 0 20px; }
+            .nav a { margin-left: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-flex">
+        <div class="logo">
+            <!-- 👇 CAMBIA "ruta-de-tu-logo.png" POR LA RUTA DE TU IMAGEN -->
+            <img src="img/logo.png" alt="Good Home Logo">
+            <h1>GOOD HOME</h1>
+            <p>EN TU HOGAR</p>s
+        </div>
+        <div class="nav">
+            <a href="#nosotros">Nosotros</a>
+            <a href="#valores">Valores</a>
+            <a href="#experiencias">Experiencias</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-content container">
+            <div class="hero-badge">
+                <i class="fas fa-brain"></i> ARQUITECTOS DE EXPERIENCIA CON IA
+            </div>
+            <h2>No instalamos dispositivos.<br>Diseñamos la inteligencia de tu hogar.</h2>
+            <div class="hero-tagline">Conectividad, seguridad y eficiencia para su hogar.</div>
+            <a href="#contacto" class="btn-primary"><i class="fas fa-pen-ruler"></i> Cotizar experiencia</a>
+        </div>
+    </div>
+
+    <!-- Somos arquitectos (diferenciador visual) -->
+    <section id="nosotros">
+        <div class="container">
+            <div class="grid-2">
+                <div class="card">
+                    <img class="card-img" src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Diseño de experiencia">
+                    <div class="card-body">
+                        <h3><i class="fas fa-drafting-compass"></i> Lo que sí hacemos</h3>
+                        <p>Diseñamos el ecosistema inteligente con IA, mapeamos necesidades, creamos planos tecnológicos y documentación para integradores externos.</p>
+                        <ul class="lista-check" style="margin-top: 20px;">
+                            <li><i class="fas fa-check-circle"></i> Auditoría de experiencia del hogar</li>
+                            <li><i class="fas fa-check-circle"></i> Planos de automatización y sincronización IA</li>
+                            <li><i class="fas fa-check-circle"></i> Selección de dispositivos compatibles</li>
+                            <li><i class="fas fa-check-circle"></i> Entregables para instaladores certificados</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="No instalamos">
+                    <div class="card-body">
+                        <h3><i class="fas fa-handshake-slash"></i> Lo que NO hacemos</h3>
+                        <p>No realizamos cableado estructural, ni montaje físico de equipos. Somos los arquitectos de la experiencia; otro integrador ejecuta la instalación siguiendo nuestro plano.</p>
+                        <div style="background:#f0f3f1; border-radius: 20px; padding: 20px; margin-top: 20px;">
+                            <i class="fas fa-quote-left"></i> <strong>“Otros instalan. Nosotros diseñamos cómo vive tu hogar con inteligencia artificial.”</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filosofía -->
+    <section class="section-dark">
+        <div class="container">
+            <h2 class="section-title">Bienvenidos a GOOD HOME</h2>
+            <div style="max-width: 900px; margin: 0 auto; text-align: center; font-size: 1.2rem; line-height: 1.6;">
+                <p>“En Good Home no instalamos dispositivos; diseñamos experiencias de vida. Creemos que el hogar debe dejar de ser un espacio estático para convertirse en un aliado que trabaje para ti. A través de la conectividad, la inteligencia artificial y la eficiencia, transformamos tu entorno en un ecosistema que cuida lo que más amas.”</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Misión y Visión -->
+    <section>
+        <div class="container grid-2">
+            <div class="card">
+                <div class="card-body">
+                    <i class="fas fa-bullseye" style="font-size: 2rem; color: #d9a13b;"></i>
+                    <h3 style="margin-top: 12px;">Misión</h3>
+                    <p>Transformar los hogares de familias y negocios en Chiapas mediante soluciones de domótica accesibles y personalizadas. Integramos inteligencia artificial y conectividad para mejorar la vida, garantizando que la tecnología trabaje al servicio de la seguridad y comodidad.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <i class="fas fa-chart-line" style="font-size: 2rem; color: #d9a13b;"></i>
+                    <h3 style="margin-top: 12px;">Visión</h3>
+                    <p>Ser el referente local de automatización residencial en Tuxtla Gutiérrez para 2028, reconocidos por simplificar la tecnología compleja e impulsar hogares inteligentes y eficientes en el estado.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Valores -->
+    <section id="valores" class="section-dark">
+        <div class="container">
+            <h2 class="section-title">Nuestros valores</h2>
+            <div class="grid-3">
+                <div class="valor-card"><div class="valor-icon"><i class="fas fa-heart"></i></div><h4>Empatía</h4><p>Escuchamos necesidades reales, sin vender tecnología innecesaria.</p></div>
+                <div class="valor-card"><div class="valor-icon"><i class="fas fa-leaf"></i></div><h4>Sostenibilidad</h4><p>Optimizamos energía y recursos, cuidando el planeta.</p></div>
+                <div class="valor-card"><div class="valor-icon"><i class="fas fa-eye"></i></div><h4>Transparencia</h4><p>Hablamos claro sobre alcances y costos.</p></div>
+                <div class="valor-card"><div class="valor-icon"><i class="fas fa-users"></i></div><h4>Espíritu de equipo</h4><p>Colaboración entre técnicos y creativos.</p></div>
+                <div class="valor-card"><div class="valor-icon"><i class="fas fa-globe-americas"></i></div><h4>Diversidad</h4><p>Perspectivas inclusivas para diseños únicos.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compromiso vs diferencia -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Nuestro compromiso</h2>
+            <div class="comp-wrapper">
+                <div class="si-box">
+                    <h3><i class="fas fa-thumbs-up"></i> Sí hacemos</h3>
+                    <ul class="lista-check">
+                        <li><i class="fas fa-check-circle"></i> Diseños personalizados al ritmo de vida</li>
+                        <li><i class="fas fa-check-circle"></i> Tecnología que se funde con arquitectura</li>
+                        <li><i class="fas fa-check-circle"></i> Redes donde dispositivos “hablan” con IA</li>
+                        <li><i class="fas fa-check-circle"></i> Ciberseguridad + soporte local humano</li>
+                        <li><i class="fas fa-check-circle"></i> Planos detallados para instaladores externos</li>
+                    </ul>
+                </div>
+                <div class="no-box">
+                    <h3><i class="fas fa-ban"></i> No hacemos</h3>
+                    <ul class="lista-check">
+                        <li><i class="fas fa-times-circle"></i> Vender dispositivos aislados</li>
+                        <li><i class="fas fa-times-circle"></i> Aplicar el mismo molde a todos</li>
+                        <li><i class="fas fa-times-circle"></i> Instalar funciones sin beneficio real</li>
+                        <li><i class="fas fa-times-circle"></i> Instalación física (cableado o montaje)</li>
+                        <li><i class="fas fa-times-circle"></i> Comprometer la elegancia con instalaciones descuidadas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiencias que diseñamos (paquetes) -->
+    <section id="experiencias" class="section-dark">
+        <div class="container">
+            <h2 class="section-title">Experiencias que diseñamos</h2>
+            <p class="section-subtitle">Paquetes conceptuales con documentación técnica para integradores</p>
+            <div class="grid-3">
+                <div class="card">
+                    <img class="card-img" src="https://images.unsplash.com/photo-1593784991095-a205069470b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cine en casa">
+                    <div class="card-body"><h3>Cine en casa con IA</h3><p>TV Samsung Visión AI, asientos D-Box sincronizados, iluminación reactiva. Entregamos plano técnico + lógica de automatización.</p></div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jardín inteligente">
+                    <div class="card-body"><h3>Jardín inteligente</h3><p>Riego por IA, sensores de humedad, iluminación RGBW y cámara con detección. Diseñamos la integración climática.</p></div>
+                </div>
+                <div class="card">
+                    <img class="card-img" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Confort inicial">
+                    <div class="card-body"><h3>Confort inicial</h3><p>Bombillas inteligentes, termostato, cortinas motorizadas, sensor de movimiento. Escenas “Mañana” y “Cena”.</p></div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 40px; font-style: italic; background: white; padding: 16px; border-radius: 60px; width: fit-content; margin-left: auto; margin-right: auto;"><i class="fas fa-file-alt"></i> Todos nuestros diseños incluyen documentación para instalador externo</p>
+        </div>
+    </section>
+
+    <!-- Proceso creativo -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Nuestro proceso creativo</h2>
+            <div class="proceso-grid">
+                <div class="proceso-paso"><div class="paso-num">1</div><strong>Consultoría</strong><br>Analizamos estilo de vida y espacios.</div>
+                <div class="proceso-paso"><div class="paso-num">2</div><strong>Diseño IA</strong><br>Creamos flujos y escenas.</div>
+                <div class="proceso-paso"><div class="paso-num">3</div><strong>Plano tecnológico</strong><br>Especificamos dispositivos.</div>
+                <div class="proceso-paso"><div class="paso-num">4</div><strong>Documentación</strong><br>Guía para instalador.</div>
+                <div class="proceso-paso"><div class="paso-num">5</div><strong>Validación</strong><br>Aseguramos experiencia perfecta.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Antes y después -->
+    <section class="section-dark">
+        <div class="container">
+            <h2 class="section-title">Tu hogar sin / con GOOD HOME</h2>
+            <div class="before-after">
+                <div class="ba-card"><img class="ba-img" src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sin Good Home"><div class="ba-content"><h3>Sin GOOD HOME</h3><p>Dispositivos aislados, apps separadas, sin sincronización, tecnología que no conversa entre sí.</p></div></div>
+                <div class="ba-card"><img class="ba-img" src="https://images.unsplash.com/photo-1556912173-3bb406efc245?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Con Good Home"><div class="ba-content"><h3>Con GOOD HOME</h3><p>Ecosistema unificado, IA que anticipa necesidades, eficiencia energética, seguridad invisible.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title">Hablemos de tu hogar inteligente</h2>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 32px;">¿Quieres que diseñemos la mejor experiencia con IA para tu residencia o negocio en Chiapas?</p>
+            <a href="#" class="btn-primary"><i class="fas fa-calendar-check"></i> Agendar consultoría</a>
+            <a href="#" class="btn-primary btn-outline" style="margin-left: 16px;"><i class="fab fa-whatsapp"></i> WhatsApp (961) 000 0000</a>
+            <p style="margin-top: 48px;"><i class="fas fa-map-marker-alt"></i> Tuxtla Gutiérrez, Chiapas | <i class="fas fa-envelope"></i> contacto@goodhome.mx</p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-logo"><h3>GOOD HOME</h3><p>Arquitectos de experiencia con IA</p></div>
+            <div class="footer-links"><strong>Explora</strong><br><a href="#nosotros">Nosotros</a><a href="#valores">Valores</a><a href="#experiencias">Experiencias</a></div>
+            <div class="footer-links"><strong>Legal</strong><br><a href="#">Aviso de privacidad</a><a href="#">Términos</a></div>
+            <div class="footer-links"><strong>Contacto</strong><br><a href="#">contacto@goodhome.mx</a><a href="#">+52 961 000 0000</a></div>
+        </div>
+        <div class="copyright">
+            <p>© 2026 GOOD HOME — No instalamos, diseñamos la inteligencia de tu hogar.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html> 
